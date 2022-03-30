@@ -4,7 +4,7 @@
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Alan Winter (alanwinter14), Santiago San Martin (santisanmartin), Leire Merino (leireemh)
 
 ## Objetivos del trabajo
 
