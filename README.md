@@ -4,7 +4,7 @@
 
 ## Integrantes del equipo
 
-Alan Winter (alanwinter14), Santiago San Martin(santisanmartin)
+Alan Winter (alanwinter14), Santiago San Martin (santisanmartin), Leire Merino (leireemh)
 
 ## Objetivos del trabajo
 
