@@ -1,8 +1,11 @@
 #include<stdio.h>
 #include<string.h>
 #define TAM_player 6
-struct TJugador{
-char nombre[50],clave[50],correo[50];
+#define TAM_MAX 300
+struct TUsuario{
+char nombre[50];
+char clave[50];
+char correo[50];
 
 
 
@@ -10,8 +13,14 @@ char nombre[50],clave[50],correo[50];
 int main(){
 
 int opc, num_player,i;
-char nivel;
-struct TJugador jugadores [6];
+char nivel, correo[50], clave[50];
+struct TUsuario usuarios[TAM_MAX];
+FILE * pfichero;
+
+
+
+
+
     do {
         system("cls");
         printf("Hola,¿Quieres jugar un juego?\n");
@@ -28,12 +37,41 @@ struct TJugador jugadores [6];
 
         case 1 :
             fflush(stdin);
-             printf("Introduzca el correo del jugador\n");
+            printf("Para iniciar sesion:\n");
+            printf("\n");
+             printf("Introduzca el correo electronico\n");
              fflush(stdin);
-            gets(jugadores[i].correo);
-             printf("Introduzca clave del jugador\n");
+            gets(correo);
+             printf("Introduzca la clave\n");
              fflush(stdin);
-            gets(jugadores[i].clave);
+            gets(clave);
+
+        pfichero = fopen("usuarios.txt", "r");
+
+        if (pfichero == NULL) {
+                printf("Error en la apertura de fichero\n");
+                return 0;
+        }
+
+        i=0;
+         while (fscanf(pfichero, "%s %s %s", usuarios[i].nombre, usuarios[i].correo, usuarios[i].clave) != EOF) {
+                printf("%s %s %s\n", usuarios[i].nombre, usuarios[i].correo, usuarios[i].clave);
+                i++;
+         }
+
+         fclose(pfichero);
+
+
+
+
+         for (i=0; i<TAM_MAX; i++) {
+                if (strcmp(correo, usuarios[i].correo) == 0)  {
+                        printf("Usuario ya existente");
+                }
+}
+
+
+
 
             do
             {
@@ -46,7 +84,7 @@ struct TJugador jugadores [6];
             {
                 printf("Introduzca el nombre del jugador %d\n",i);
                 fflush(stdin);
-                gets(jugadores[i].nombre);
+                gets(usuarios[i].nombre);
             }
 
             do
@@ -66,13 +104,13 @@ struct TJugador jugadores [6];
                  fflush(stdin);
             printf("Introduzca nombre del jugador\n");
             fflush(stdin);
-            gets(jugadores[i].nombre);
+            gets(usuarios[i].nombre);
              printf("Introduzca el correo del jugador\n");
              fflush(stdin);
-            gets(jugadores[i].correo);
+            gets(usuarios[i].correo);
              printf("Introduzca clave del jugador\n");
              fflush(stdin);
-            gets(jugadores[i].clave);
+            gets(usuarios[i].clave);
         break ;
         }
          system("pause");
