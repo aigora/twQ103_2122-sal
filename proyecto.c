@@ -10,7 +10,7 @@ int modo_de_juego;
 int pedirOpcion(){
 	int operacion;
 	system("cls");
-    printf("Hola,�Quieres jugar un juego?\n\n\n");
+    printf("Bienvenido a SAL, el juego del momento.\n\n\n");
     printf("1-Iniciar sesion\n");
     printf("2-Registrarse\n");
     printf("3-Salir del juego\n");
@@ -84,7 +84,7 @@ int main(){
              								printf("Introduzca el nombre del jugador\n");
                 							fflush(stdin);
                 							gets(jugadores[i].nombre);
-        								} else if(jugadores[i].modo_de_juego==2) { 
+        								} else if(jugadores[i].modo_de_juego==2) {
 											{
             									printf("Introduzca el numero de jugadores en el grupo\n");
             									fflush(stdin);
@@ -132,13 +132,14 @@ int main(){
         						}
     						}
             			} else {
-                			printf("La contraseña o la clave no son compatiples con nuestros datos. Volvera al menu de inicio\n");
+                			printf("Correo o clave incorrectos. Si no tiene una cuenta, registrese en el menu de inicio\n");
                 		break;
             			}
         			}
             break ;
 
         	case 2 :
+
             	fflush(stdin);
             	printf("Introduzca el correo del jugador\n");
             	fflush(stdin);
