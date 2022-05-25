@@ -1,8 +1,9 @@
 #include<stdio.h>
 #include<string.h>
 #define TAM_player 4
+#define TAM_Registrado 100
 struct TJugador{
-char nombre[50],clave[50],correo[50],clave_guardado[50],correo_guardado[50];
+char nombre[50],clave_guardado[50],correo_guardado[50];
 int modo_de_juego;
 
 
@@ -11,8 +12,8 @@ int pedirOpcion(){
 	int operacion;
 	system("cls");
     printf("Bienvenido a SAL, el juego del momento.\n\n\n");
-    printf("1-Iniciar sesion\n");
-    printf("2-Registrarse\n");
+    printf("1-Registrarse\n");
+    printf("2-Inciar sesion\n");
     printf("3-Salir del juego\n");
     printf("Escoje una de las opciones.\n");
     scanf("%d",&operacion);
@@ -33,9 +34,8 @@ char introducirDificultad(){
 int main(){
 
 	int opc, num_player,i,vidas,respuesta,contador;
-	char nivel,respuesta_r,j_o_r,volver;
-	struct TJugador jugadores [TAM_player];
-	FILE*pfile;
+	char nivel,respuesta_r,j_o_r,volver,clave[50],correo[50];
+	struct TJugador jugadores [TAM_Registrado];
 	FILE*pfilexit;
 
 
@@ -45,7 +45,7 @@ int main(){
         opc=pedirOpcion();
 
         switch (opc) {
-        	case 1 :
+        	case 2 :
         		pfilexit =fopen("exitj.txt","r");//fichero lectura para iniciar sesion
         		if(pfilexit==NULL) {
         			printf("Error. No existe el fichero\n");
@@ -57,16 +57,17 @@ int main(){
         			contador++;
         		}
         		fclose(pfilexit);
-        			for(i=0;i<=contador;i++) {
-            			fflush(stdin);
+        			fflush(stdin);
              			printf("Introduzca el correo del jugador\n");
              			fflush(stdin);
-             			gets(jugadores[i].correo);
+             			gets(correo);
              			printf("Introduzca clave del jugador\n");
              			fflush(stdin);
-            			gets(jugadores[i].clave);
+            			gets(clave);
+            			
+        			for(i=0;i<=contador;i++) {
 
-            			if(strcmp(jugadores[i].correo,jugadores[i].correo_guardado)==0 && strcmp(jugadores[i].clave,jugadores[i].clave_guardado)==0) {
+            			if(strcmp(correo,jugadores[i].correo_guardado)==0 && strcmp(clave,jugadores[i].clave_guardado)==0) {
     						while(1) {
             					do {
             						printf("Escoja si desea jugar (J) o ver el ranking (R)\n");
@@ -138,7 +139,7 @@ int main(){
         			}
             break ;
 
-        	case 2 :
+        	case 1 :
 
             	fflush(stdin);
             	printf("Introduzca el correo del jugador\n");
@@ -147,7 +148,7 @@ int main(){
             	printf("Introduzca clave del jugador\n");
             	fflush(stdin);
             	gets(jugadores[i].clave_guardado);
-	            pfilexit =fopen("exitj.txt","w");
+	            pfilexit =fopen("exitj.txt","a");
     	        if(pfilexit==NULL) {
             		printf("No se ha podido abrir el fichero para escribir\n");
             		return 0;
