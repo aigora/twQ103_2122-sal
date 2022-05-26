@@ -275,18 +275,21 @@ int main(){
             								nivel=introducirDificultad();
             								switch(nivel) {
                 								case 'F':
+                									banner2();
 													while(terminadoF==0){
 														terminadoF=nivelFacil();
 													}
 													printf("Felicidades ya estas fuera\n");
                 								break;
                 								case 'M': 
+                										banner4();
 														while(terminadoM==0){
 															terminadoM=NivelMedio();
 														}
 														printf("Felicidades ya estas fuera\n");
 												break;
 												case 'D':
+													banner3();
 													while(terminadoD==0){
 														terminadoD=NivelDificil();
 													}
@@ -833,13 +836,14 @@ int NivelDificil(){
 	int num, x, y, numTelefono;
 	char palabra[100],batman[100],maquinista[100],num1[100],matrix[100], letra1, tesis[100],blancanieves[100];
 	
-	printf("Has entrado en una sala de un cine abandonado y te has quedado encerrado, las llaves estan en un criptex. Responde correctamente y saldras, falla y no podras escapar\n");
+	printf("Has entrado en una sala de un cine abandonado y te has quedado encerrado, las llaves estan en un criptex. Responde correctamente y saldras, falla y no podras escapar\n\n");
+	
 	//Nivel 1: codigo cifrado
-	printf("Para poder salir necesitas completar un crucigrama y buscar la palabra escondida en esta para abrir el criptex\n ")
-	printf("Lo primero que notas es una pequeña hoja tirada en el suelo con una palabra con un codigo cifrado\n");
-	printf(" Y la palabra es %c %c %c %c %c %c %c %c %c %c\n\n",204,192,208,212,200,205,200,210,211,192);
-	printf("Responde a la siguiente pregunta para encontrar un diccionario\n");////////////////////7///////////DICCIONARIO///////////////////////////////
-	printf("Cual es el apellido del actor protagonista de tres entregas de Batman\n");
+	printf("Para poder salir necesitas completar un crucigrama y buscar la palabra escondida en este para abrir el criptex\n");
+	printf("Lo primero que observas es una peque%ca hoja tirada en el suelo con una palabra con un codigo cifrado\n\n",164);
+	printf("Y la palabra es %c %c %c %c %c %c %c %c %c %c\n\n",204,192,208,212,200,205,200,210,211,192);
+	printf("Responde a la siguiente pregunta para encontrar el decodificador\n");
+	printf("Cual es el apellido del actor protagonista de tres entregas de Batman\n\n");
 	int encontradoBatman=0;
 	while(!(encontradoBatman==1 &&	vidas>0)){
 		gets(batman);
@@ -856,7 +860,8 @@ int NivelDificil(){
 			}
 		}
 	}
-	printf("El diccionario es el sigiente:\n");	
+	printf("\n");
+	printf("Has desbloqueado el descodificador:\n");	
 	int letra=97;
 	for(letra; letra<=122; letra++){
 		printf("%c  ",letra);
@@ -887,8 +892,8 @@ int NivelDificil(){
 	}
 	
 	//Nivel 2: acertijo
-	printf("Perfecto ya tienes la primera palabra del cruzigrama, continuemos con la segunda.\nSe enciende la pantalla y aparecen en esta cinco datos sobre una pelicula descubre esta y apuntala en tu cruzigrama\n")
-	printf("1_Ha tenido un total de 9 entregas.\n2_La primera se estreno en 1979.\n3_El director de esta entrega fue Ridley Scott.\n_4_La ultima entrega fue en 2017.\n5_ Para la mayoria de escenas gore de la primera pelicula se utilizaron productos de casqueria dando una impresion mas realista pero incomoda para los actores.\n");
+	printf("Perfecto ya tienes la primera palabra del cruzigrama, continuemos con la segunda.\nSe enciende la pantalla y aparecen cinco datos sobre una pelicula. Descubrela y completa tu cruzigrama\n\n");
+	printf("1_Ha tenido un total de 9 entregas.\n2_La primera se estreno en 1979.\n3_El director de esta entrega fue Ridley Scott.\n_4_La ultima entrega fue en 2017.\n5_ Para la mayoria de escenas gore de la primera pelicula se utilizaron productos de casqueria dando una impresion mas realista pero incomoda para los actores.\n\n");
 	printf("Introduce la pelicula\n");
 
 	int encontradoAlien=0;
@@ -907,26 +912,11 @@ int NivelDificil(){
 			}
 		}
 	}
+	
 //Nivel 3: número de teléfono
-printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pequeño cuadern con una secuencia numerica y una ecuacion, descubre estos tres valores\n");
-	printf("Continua la siguiente secuencia:\n0, 12, 24, 36, 48,...\n");
-	int numeroCorrecto=0;
-	while(!(numeroCorrecto==1	&&	vidas>0)){
-		scanf("%d",&num);
-		if(num==60){
-			numeroCorrecto=1;
-		}
-		else{
-			printf("Lo sentimos su respuesta es incorrecta\n");			
-			vidas--;
-			printf("Te quedan %d vidas\n",vidas);
-			if(!vidas>0){
-				printf("GAME OVER\nEmpieza otra vez\n");
-				return 0;
-			}
-		}
-	}
-	printf("Ahora resuelve la siguiente ecuacion con dos incognitas\nx+y=2217\n5x-y/9+500=1787\n");
+	printf("\n");
+	printf("Perfecto, has conseguido la segunda palabra de tu cruzigrama\nPara la siguiente prueba encuentras un peque%co cuaderno con una secuencia numerica y una ecuacion, descubre estos tres valores\n",164);
+	printf("Resuelve la siguiente ecuacion con dos incognitas\nx+y=2217\n5x-y/9+500=1787\n");
 	int numeroX=0;
 	while(!(numeroX==1	&& vidas>0)){
 		printf("Introduce x:\n");
@@ -946,7 +936,7 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 	}
 	int numeroY=0;
 	while(!(numeroY==1 && vidas>0)) {
-		printf("Introduce y\n");
+		printf("Introduce y:\n");
 		scanf("%d",&y);
 		if(y==1917){
 			numeroY=1;
@@ -961,7 +951,25 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 			}
 		}
 	}
-	printf("60 segundos, 1917 y 300, todo nombre de peliculas\n Y juntos forman un numero de telefono\nOrdenalas en orden cronologico para obtener este numero\n");
+	printf("Ahora continua la siguiente secuencia:\n0, 12, 24, 36, 48,...\n");
+	int numeroCorrecto=0;
+	while(!(numeroCorrecto==1	&&	vidas>0)){
+		scanf("%d",&num);
+		if(num==60){
+			numeroCorrecto=1;
+		}
+		else{
+			printf("Lo sentimos su respuesta es incorrecta\n");			
+			vidas--;
+			printf("Te quedan %d vidas\n",vidas);
+			if(!vidas>0){
+				printf("GAME OVER\nEmpieza otra vez\n");
+				return 0;
+			}
+		}
+	}
+	
+	printf("300, 1917 y 60 segundos, todos nombre de peliculas\nY juntos forman un numero de telefono\nOrdenalas cronologicamente para obtener este numero\n");
 	int numeroEncuentro=0;
 	while(!(numeroEncuentro==1 && vidas>0)) {
 		scanf("%d",&numTelefono);
@@ -978,9 +986,11 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 			}
 		}
 	} 
+	
 	printf("Bien ahora solo falta buscar un movil para probar a llamar a este numero\nResponde esta pregunta correctamente para obtenerlo\n");
 	printf("cual es la primera pelicula de disney\n");
-	int encontradoDisney
+	int encontradoDisney=0;
+	
 	while(!(encontradoDisney==1 &&	vidas>0)){
 		gets(blancanieves);
 		if(strcmp(blancanieves,"Blancanieves")==0 || strcmp(blancanieves,"blancanieves")==0 || strcmp(blancanieves,"BLANCANIEVES")==0){
@@ -996,7 +1006,7 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 			}
 		}
 	}
-	pritnf("Con el movil en tu disposicion llamas y obtienes la tercera palabra:\nInterstellar\n");
+	printf("Con el movil en tu disposicion llamas y obtienes la tercera palabra:\n\nInterstellar\n\n");
 	
 	
 	
@@ -1010,28 +1020,34 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 		gets(num1);
 		if(strcmp(num1,"1A")==0){
 			numeroBarco1=1;
-			ordenAdivinado[i]=109;
+			ordenAdivinado[i]=116;
+			printf("Acertaste\n");
 			i++;
 		}
-		else if(strcmp(num1,"1B")==0)==0){
+		else if(strcmp(num1,"1B")==0){
 			numeroBarco2=1;
-			ordenAdivinado[i]=97;
+			ordenAdivinado[i]=120;
+			printf("Acertaste\n");
 			i++;
 		} else if(strcmp(num1,"2C")==0){
 			numeroBarco3=1;
-			ordenAdivinado[i]=116;
+			ordenAdivinado[i]=109;
+			printf("Acertaste\n");
 			i++;
 		} else if(strcmp(num1,"3A")==0){
 			numeroBarco4=1;
 			ordenAdivinado[i]=114;
+			printf("Acertaste\n");
 			i++;
 		} else if(strcmp(num1,"3C")==0){
 			numeroBarco5=1;
-			ordenAdivinado[i]=105;
+			ordenAdivinado[i]=97;
+			printf("Acertaste\n");
 			i++;
 		} else if(strcmp(num1,"4C")==0){
 			numeroBarco6=1;
-			ordenAdivinado[i]=120;
+			ordenAdivinado[i]=105;
+			printf("Acertaste\n");
 			i++;
 		}
 		else{
@@ -1065,10 +1081,11 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 			}
 		}
 	}
-  
+
 	//Nivel 5:ahorcado
 	
-	printf("Ultima palabra\nPara esta encuentras escondida una tablet que tiene un juego abierto, el ahorcado\nEntruentra la palabra para poder salir\n")
+	printf("Ultima palabra\nPara esta encuentras escondida una tablet que tiene un juego abierto, el ahorcado\nEntruentra la palabra para poder salir\n");
+	printf("Selecciona una letra\n");
 	int encontradoA=0, encontradoC=0, encontradoS=0;
 	int encontradoB=0, encontradoL=0, encontradoN=0;
 	int encontradoCC=0;
@@ -1117,14 +1134,14 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 		fflush(stdin);
 		printf(" %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c %c\n",124,c,124,a,124,s,124,a,124,b,124,l,124,a,124,n,124,c,124,a,124);
 	}
-	
+	printf("\n");
 	//Nivel 6: criptex
-	printf("Ya estan todas las colocas para buscar la palabra escondida y poder abrir el criptex\n");
+	printf("Ya estan todas.Busca la palabra escondida para poder abrir el criptex\n\n");
 	printf("%cm%ca%cq%cu%ci%cn%ci%cs%ct%ca%c %c %c %c %c %c %c\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
 	printf("%c %c %c %c %c %ca%cl%ci%ce%cn%c %c %c %c %c %c %c\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
 	printf("%c %c %c %ci%cn%ct%ce%cr%cs%ct%ce%cl%cl%ca%cr%c %c\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
 	printf("%c %c %c %c %cm%ca%ct%cr%ci%cx%c %c %c %c %c %c %c\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
-	printf("%c %c %c %c %c %c %cc%ca%cs%ca%cb%cl%ca%cn%cc%ca%c\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
+	printf("%c %c %c %c %c %c %cc%ca%cs%ca%cb%cl%ca%cn%cc%ca%c\n\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
 	printf("Introduce la palabra escondida\n");
 	int encontradoTesis=0;
 	while(!(encontradoTesis==1 &&	vidas>0)){
@@ -1145,3 +1162,4 @@ printf("Perfecto, solo te quedan tres\nPara la siguiente prueba encuentras un pe
 	printf("Ya esta abierto el criptex\n");	
 	return 1;
 } 
+ 
