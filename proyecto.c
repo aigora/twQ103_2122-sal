@@ -181,10 +181,33 @@ printf("                   =======##+====*#*====*##++++++*##################*###
 printf("                   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=              \n");
 printf("                   #######################################################******************=\n");
 }
+int pedirOpcion(){
+	int operacion;
+	system("cls");
+    printf("Bienvenido a SAL, el juego del momento.\n\n\n");
+    printf("1-Registrarse\n");
+    printf("2-Inciar sesion\n");
+    printf("3-Salir del juego\n");
+    printf("Escoje una de las opciones.\n");
+    scanf("%d",&operacion);
+    return operacion;
+}
+char introducirDificultad(){
+    char lvl;
+	do {
+		printf("F- Nivel Facil\n");
+    	printf("M- Nivel Medio\n");
+    	printf("D-Nivel Dificil\n");
+    	printf("Introduzca en que nivel quiere jugar\n");
+    	fflush(stdin);
+    	scanf("%c",&lvl);
+    } while(lvl!='F' && lvl!='M' && lvl!='D');
+    return lvl;
+}
 
 int main(){
 
-	int opc, num_player,i,vidas,respuesta,contador;
+	int opc, num_player,i,vidas,respuesta,contador,terminadoF=0,terminadoM=0,terminadoD=0;
 	char nivel,respuesta_r,j_o_r,volver,clave[50],correo[50];
 	struct TJugador jugadores [TAM_Registrado];
 	FILE*pfilexit;
@@ -252,23 +275,20 @@ int main(){
             								nivel=introducirDificultad();
             								switch(nivel) {
                 								case 'F':
-                    								int terminado=0;
-													while(terminado==0){
-														terminado=nivelFacil();
+													while(terminadoF==0){
+														terminadoF=nivelFacil();
 													}
 													printf("Felicidades ya estas fuera\n");
                 								break;
-                								case 'M':
-                										int terminado=0;
-														while(terminado==0){
-															terminado=NivelMedio();
+                								case 'M': 
+														while(terminadoM==0){
+															terminadoM=NivelMedio();
 														}
 														printf("Felicidades ya estas fuera\n");
 												break;
 												case 'D':
-													int terminado=0;
-													while(terminado==0){
-														terminado=NivelDificil();
+													while(terminadoD==0){
+														terminadoD=NivelDificil();
 													}
 													printf("Felicidades ya estas fuera\n");
 												break;
@@ -323,32 +343,11 @@ int main(){
 
 return 0;
 }
-int pedirOpcion(){
-	int operacion;
-	system("cls");
-    printf("Bienvenido a SAL, el juego del momento.\n\n\n");
-    printf("1-Registrarse\n");
-    printf("2-Inciar sesion\n");
-    printf("3-Salir del juego\n");
-    printf("Escoje una de las opciones.\n");
-    scanf("%d",&operacion);
-    return operacion;
-}
-char introducirDificultad(){
-    char lvl;
-	do {
-		printf("F- Nivel Facil\n");
-    	printf("M- Nivel Medio\n");
-    	printf("D-Nivel Dificil\n");
-    	printf("Introduzca en que nivel quiere jugar\n");
-    	fflush(stdin);
-    	scanf("%c",&lvl);
-    } while(lvl!='F' && lvl!='M' && lvl!='D');
-    return lvl;
-}
+
 int nivelFacil () {
 	
 	int vidas=5;
+	char tematica, respuestaChar;
     printf("Estas encerrado en un laberinto responde las siguientes preguntas de manera correcta para conseguir el camino correcto y lograr salir\n");
     printf("\n");
     printf("Para facilitarte un poco las cosas, te permitimos elegir una tematica\n");
