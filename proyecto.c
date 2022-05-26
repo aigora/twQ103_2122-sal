@@ -188,7 +188,7 @@ int pedirOpcion(){
 	system("cls");
     printf("Bienvenido a SAL, el juego del momento.\n\n\n");
     printf("1-Registrarse\n");
-    printf("2-Inciar sesion\n");
+    printf("2-Iniciar sesion\n");
     printf("3-Salir del juego\n");
     printf("Escoje una de las opciones.\n");
     scanf("%d",&operacion);
@@ -672,7 +672,7 @@ int nivelFacil () {
         break;
     }
     if (vidas==0){
-        	printf("GAME OVER\nEmpieza otra vez");
+        	printf("GAME OVER\nEmpieza otra vez\n");
         	return 0;
         }
         else {
