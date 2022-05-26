@@ -1,2 +1,1 @@
-winter sipi 970 
-l 22 
+t 5 
