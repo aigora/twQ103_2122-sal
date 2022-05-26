@@ -332,12 +332,14 @@ int main(){
             	printf("Introduzca clave del jugador\n");
             	fflush(stdin);
             	gets(jugadores[i].clave_guardado);
-	            pfilexit =fopen("exitj.txt","a");
+	            pfilexit =fopen("exitj.txt","a+");
     	        if(pfilexit==NULL) {
             		printf("No se ha podido abrir el fichero para escribir\n");
             		return 0;
             	}
+
 	            fprintf(pfilexit,"%s %s \n",jugadores[i].correo_guardado,jugadores[i].clave_guardado);
+
     	        fclose(pfilexit);
         	break ;
         }
@@ -691,14 +693,14 @@ int NivelMedio(){
 
 	//Nivel 1: sopa letras
 	printf("Encuentra tres palabras relacionadas con una prision para continuar, y recuerda estas palabras para una futura prueba\n");
-	
+
 	char sopaLetras[6][6] ={{'l','a','d','l','e','c'},
 							{'w','l','m','e','l','u'},
 							{'u','s','a','l','i','r'},
 							{'a','o','g','v','t','i'},
 							{'p','i','y','u','e','b'},
 							{'r','o','c','c','a','l'}};
-							
+
 
 	for(i=0; i<6; i++){
 		for(j=0; j<6; j++){
@@ -708,7 +710,7 @@ int NivelMedio(){
 	}
 
 	int encontradoLlave=0, encontradoCelda=0, encontradoSalir=0;
-	
+
 
 	while(!(encontradoLlave==1	&&	encontradoCelda==1	&&	encontradoSalir==1	&&	vidas>0)){
 		fflush(stdin);
@@ -855,9 +857,9 @@ int NivelDificil(){
 	printf("Y la palabra es %c %c %c %c %c %c %c %c %c %c\n\n",204,192,208,212,200,205,200,210,211,192);
 	printf("Responde a la siguiente pregunta para encontrar el decodificador\n");
 	printf("Cual es el apellido del actor protagonista de tres entregas de Batman\n\n");
-	
+
 	int encontradoBatman=0;
-	
+
 	while(!(encontradoBatman==1 &&	vidas>0)){
 		fflush(stdin);
 		gets(batman);
