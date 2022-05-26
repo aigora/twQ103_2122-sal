@@ -4,7 +4,7 @@
 #define TAM_Registrado 100
 struct TJugador{
 char nombre[50],clave_guardado[50],correo_guardado[50];
-int modo_de_juego;
+int modo_de_juego, vidas;
 
 };
 void banner1(){
@@ -684,19 +684,22 @@ int NivelMedio(){
 	int vidas=3;
 	int num;
 	char palabra[100];
-	system("cls");
+	int i=0, j=0;
+
 
 	printf("Has entrado en una prision. Responde correctamente y saldras, falla y no podras escapar\n");
 
 	//Nivel 1: sopa letras
 	printf("Encuentra tres palabras relacionadas con una prision para continuar, y recuerda estas palabras para una futura prueba\n");
+	
 	char sopaLetras[6][6] ={{'l','a','d','l','e','c'},
 							{'w','l','m','e','l','u'},
 							{'u','s','a','l','i','r'},
 							{'a','o','g','v','t','i'},
 							{'p','i','y','u','e','b'},
 							{'r','o','c','c','a','l'}};
-	int i=0, j=0;
+							
+
 	for(i=0; i<6; i++){
 		for(j=0; j<6; j++){
 			printf("%c ",sopaLetras[i][j]);
@@ -705,7 +708,10 @@ int NivelMedio(){
 	}
 
 	int encontradoLlave=0, encontradoCelda=0, encontradoSalir=0;
+	
+
 	while(!(encontradoLlave==1	&&	encontradoCelda==1	&&	encontradoSalir==1	&&	vidas>0)){
+		fflush(stdin);
 		gets(palabra);
 		if(strcmp(palabra,"llave")==0 || strcmp(palabra, "Llave")==0 || strcmp(palabra, "LLAVE")==0){
 			encontradoLlave=1;
@@ -752,7 +758,7 @@ int NivelMedio(){
 
 
 	//Nivel 3: puertas
-	printf("Perfecto, ahora tienes a tu disposicion tres llaves, y solo una de ellas abre la puerta de tu celda\nLa cerradura tiene una silueta formado por un cuadrado de 2cm de lado y un triangula de 3cm base y 2cm altura.\nLas tres llaves tienen la misma silueta pero distinto tama%co:\n1_10cm, 2_6cm, 3_7cm\n ",164);
+	printf("Perfecto, ahora tienes a tu disposicion tres llaves, y solo una de ellas abre la puerta de tu celda\nLa cerradura tiene una silueta formado por un cuadrado de 2cm de lado y un triangula de 3cm base y 2cm altura.\nLas tres llaves tienen la misma silueta pero distinto tama%co, calcula el area:\n1_10cm, 2_6cm, 3_7cm\n ",164);
 	int puertaCorrecta=0;
 	while(!(puertaCorrecta==1	&&	vidas>0)){
 		scanf("%d",&num);
@@ -778,8 +784,8 @@ int NivelMedio(){
 	while(!(numeroDiferente==1	&&	vidas>0)){
 		numDados=rand()%(6-1+1) + 1;
 		scanf("%d",&num);
-		printf("Los presoso han sacado un %d\n",numDados);
-		if (num==numDados) {
+		printf("Los preso han sacado un %d\n",numDados);
+		if (num==numDados && num<7) {
 			printf("Lo sentimos su respuesta es incorrecta\n");
 			vidas--;
 			printf("Te quedan %d vidas\n",vidas);
@@ -849,8 +855,11 @@ int NivelDificil(){
 	printf("Y la palabra es %c %c %c %c %c %c %c %c %c %c\n\n",204,192,208,212,200,205,200,210,211,192);
 	printf("Responde a la siguiente pregunta para encontrar el decodificador\n");
 	printf("Cual es el apellido del actor protagonista de tres entregas de Batman\n\n");
+	
 	int encontradoBatman=0;
+	
 	while(!(encontradoBatman==1 &&	vidas>0)){
+		fflush(stdin);
 		gets(batman);
 		if(strcmp(batman,"Bale")==0 || strcmp(batman,"bale")==0 || strcmp(batman,"BALE")==0){
 			encontradoBatman=1;
