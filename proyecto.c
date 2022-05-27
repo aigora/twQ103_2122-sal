@@ -74,10 +74,10 @@ void banner1(){
 void banner2(){
 printf(" ##                ##                ##               ###\n");
 printf("##                                                    ##\n");
-printf("#####   ######    ###     ##  ##    ###      ####      ##\n");
+printf("#####   ######    ###     ##  ##    ###      ####     ##\n");
 printf("##      ##  ##    ##     ##  ##     ##         ##     ##\n");
 printf("##      ##        ##     ##  ##     ##      #####     ##\n");
-printf("## ##   ##        ##      ####      ##     ##  ##     ##\n");
+printf("##      ##        ##      ####      ##     ##  ##     ##\n");
 printf("###   ####      ####      ##      ####     #####    ####\n");
 }
 void banner3(){
@@ -201,7 +201,7 @@ char introducirDificultad(){
     	printf("Introduzca en que nivel quiere jugar\n");
     	fflush(stdin);
     	scanf("%c",&lvl);
-    } while(lvl!='F' && lvl!='M' && lvl!='D');
+    } while(lvl!='F' && lvl!='f' && lvl!='M' && lvl!='m' && lvl!='d' && lvl!='D');
     return lvl;
 }
 
@@ -212,90 +212,11 @@ int main(){
 	struct TJugador jugadores [TAM_Registrado];
 	FILE*pfilexit;
 
-
-
     do {
     	system("cls");
         opc=pedirOpcion();
-
         switch (opc) {
-        	case 2 :
-        		pfilexit =fopen("exitj.txt","r");//fichero lectura para iniciar sesion
-        		if(pfilexit==NULL) {
-        			printf("Error. No existe el fichero\n");
-        			return 0;
-        		}
-            	i=0;
-        		while(fscanf(pfilexit, "%s %s",jugadores[i].correo_guardado , jugadores[i].clave_guardado)!= EOF) {
-        			i++;
-        			contador++;
-        		}
-        		fclose(pfilexit);
-        			fflush(stdin);
-             			printf("Introduzca el correo del jugador\n");
-             			fflush(stdin);
-             			gets(correo);
-             			printf("Introduzca clave del jugador\n");
-             			fflush(stdin);
-            			gets(clave);
-
-        			for(i=0;i<=contador;i++) {
-
-            			if(strcmp(correo,jugadores[i].correo_guardado)==0 && strcmp(clave,jugadores[i].clave_guardado)==0) {
-      									do {
-        									printf("Quiere jugar en  solitario(1) o en grupo(2)\n");
-        									scanf("%d",&jugadores[i].modo_de_juego);
-       									} while(jugadores[i].modo_de_juego!=1 && jugadores[i].modo_de_juego!=2);
-        								if(jugadores[i].modo_de_juego==1) {
-             								printf("Introduzca el nombre del jugador\n");
-                							fflush(stdin);
-                							gets(jugadores[i].nombre);
-        								} else if(jugadores[i].modo_de_juego==2) {
-											{
-            									printf("Introduzca el numero de jugadores en el grupo\n");
-            									fflush(stdin);
-            									scanf("%d",&num_player);
-            								} while(num_player>TAM_player);
-            								for(i=0;i<num_player;i++) {
-                								printf("Introduzca el nombre del grupo\n");
-                								fflush(stdin);
-                								gets(jugadores[i].nombre);
-            								}
-        								}
-            							do{
-            								nivel=introducirDificultad();
-            								switch(nivel) {
-                								case 'F':
-                									banner2();
-                									printf("\n");
-                									printf("\n");
-                                                    nivelFacil();
-                								break;
-                								case 'M':
-                										banner4();
-															NivelMedio();
-												break;
-												case 'D':
-													banner3();
-
-                                                    NivelDificil();
-												break;
-
-            								}
-                							printf("Quieres volver a jugar?\n Si desea volver a jugar introduzca la letra 's'");
-                							fflush(stdin);
-                							scanf("%c",&respuesta_r);
-            							}while(respuesta_r =='S'||respuesta_r =='s');
-                                        break;
-            			}
-        			}
-        			if(strcmp(correo,jugadores[i].correo_guardado)!=0 && strcmp(clave,jugadores[i].clave_guardado)!=0) {
-                			printf("Correo o clave incorrectos. Si no tiene una cuenta, registrese en el menu de inicio\n");
-            			}
-            break ;
-
         	case 1 :
-
             	fflush(stdin);
             	printf("Introduzca el correo del jugador\n");
             	fflush(stdin);
@@ -311,15 +232,87 @@ int main(){
 	            fprintf(pfilexit,"%s %s \n",jugadores[i].correo_guardado,jugadores[i].clave_guardado);
     	        fclose(pfilexit);
         	break ;
+        	case 2 :
+        		pfilexit =fopen("exitj.txt","r");//fichero lectura para iniciar sesion
+        		if(pfilexit==NULL) {
+        			printf("Error. No existe el fichero\n");
+        			return 0;
+        		}
+            	i=0;
+        		while(fscanf(pfilexit, "%s %s",jugadores[i].correo_guardado , jugadores[i].clave_guardado)!= EOF) {
+        			i++;
+        			contador++;
+        		}
+        		fclose(pfilexit);
+        		fflush(stdin);
+             	printf("Introduzca el correo del jugador\n");
+             	fflush(stdin);
+             	gets(correo);
+             	printf("Introduzca clave del jugador\n");
+             	fflush(stdin);
+            	gets(clave);
+        		for(i=0;i<=contador;i++) {
+            		if(strcmp(correo,jugadores[i].correo_guardado)==0 && strcmp(clave,jugadores[i].clave_guardado)==0) {
+      					do {
+        					printf("Quiere jugar en  solitario(1) o en grupo(2)\n");
+        					scanf("%d",&jugadores[i].modo_de_juego);
+       					} while(jugadores[i].modo_de_juego!=1 && jugadores[i].modo_de_juego!=2);
+        				if(jugadores[i].modo_de_juego==1) {
+             				printf("Introduzca el nombre del jugador\n");
+                			fflush(stdin);
+                			gets(jugadores[i].nombre);
+	     				} else if(jugadores[i].modo_de_juego==2) { {
+            				printf("Introduzca el numero de jugadores en el grupo\n");
+            				fflush(stdin);
+            				scanf("%d",&num_player);
+            			} while(num_player>TAM_player);
+            			for(i=0;i<num_player;i++) {
+                			printf("Introduzca el nombre del grupo\n");
+                			fflush(stdin);
+                			gets(jugadores[i].nombre);
+            			}
+        				}
+            			do{
+            				nivel=introducirDificultad();
+            				switch(nivel) {
+                				case 'f':
+                				case 'F':
+                					banner2();
+                					printf("\n\n");
+                                    nivelFacil();
+                                    printf("Felicidades has conseguido salir del laberinto\n\n");
+                				break;
+                				case 'M':
+                				case 'm':
+                					banner4();
+                					printf("\n\n");
+									NivelMedio();
+									printf("Felicidades has conseguido salir de la prision\n\n");
+								break;
+								case 'D':
+								case 'd':
+									banner3();
+                					printf("\n\n");
+                                    NivelDificil();
+                                    printf("Felicidades has conseguido salir del cine abandonado\n\n");
+								break;
+
+            				}
+                			printf("Quieres volver a jugar?\n Si desea volver a jugar introduzca la letra 's'");
+                			fflush(stdin);
+                			scanf("%c",&respuesta_r);
+            			}while(respuesta_r =='S'||respuesta_r =='s');
+                        break;
+            		}
+        		}
+        		if(strcmp(correo,jugadores[i].correo_guardado)!=0 && strcmp(clave,jugadores[i].clave_guardado)!=0) {
+                	printf("Correo o clave incorrectos. Si no tiene una cuenta, registrese en el menu de inicio\n");
+            	}
+            break ;
         }
         system("pause");
-
     } while(opc!=3||opc<1||opc>3);
-
-
-
-
-return 0;
+	return 0;
 }
 
 int nivelFacil () {
@@ -654,7 +647,7 @@ int NivelMedio(){
 	int vidas=3;
 	int num;
 	char palabra[100];
-	system("cls");
+
 
 	printf("Has entrado en una prision. Responde correctamente y saldras, falla y no podras escapar\n");
 
@@ -675,6 +668,7 @@ int NivelMedio(){
 	}
 
 	int encontradoLlave=0, encontradoCelda=0, encontradoSalir=0;
+	fflush(stdin);
 	while(!(encontradoLlave==1	&&	encontradoCelda==1	&&	encontradoSalir==1	&&	vidas>0)){
 		gets(palabra);
 		if(strcmp(palabra,"llave")==0 || strcmp(palabra, "Llave")==0 || strcmp(palabra, "LLAVE")==0){
@@ -704,6 +698,7 @@ int NivelMedio(){
 	//Nivel 2: Acertijo
 	printf("Exacto te encuentras en una celda.Has superado la primera prueba, a continuacion resuleve el siguiente acertijo:\nNo muerdo ni ladro, pero tengo dientes y la casa guardo,Que soy?\n");
 	int solucionadoAcertijo=0;
+	fflush(stdin);
 	while(!(solucionadoAcertijo==1	&&	vidas>0)){
 		gets(palabra);
 		if(strcmp(palabra, "llave")==0 || strcmp(palabra, "Llave")==0 || strcmp(palabra, "LLAVE")==0){
@@ -722,7 +717,7 @@ int NivelMedio(){
 
 
 	//Nivel 3: puertas
-	printf("Perfecto, ahora tienes a tu disposicion tres llaves, y solo una de ellas abre la puerta de tu celda\nLa cerradura tiene una silueta formado por un cuadrado de 2cm de lado y un triangula de 3cm base y 2cm altura.\nLas tres llaves tienen la misma silueta pero distinto tama%co:\n1_10cm, 2_6cm, 3_7cm\n ",164);
+	printf("Perfecto, ahora tienes a tu disposicion tres llaves, y solo una de ellas abre la puerta de tu celda\nLa cerradura tiene una silueta formado por un cuadrado de 2cm de lado y un triangula de 3cm base y 2cm altura.\nLas tres llaves tienen la misma silueta pero distinto tama%co, calcula el area:\n1_10cm, 2_6cm, 3_7cm\n ",164);
 	int puertaCorrecta=0;
 	while(!(puertaCorrecta==1	&&	vidas>0)){
 		scanf("%d",&num);
@@ -748,8 +743,8 @@ int NivelMedio(){
 	while(!(numeroDiferente==1	&&	vidas>0)){
 		numDados=rand()%(6-1+1) + 1;
 		scanf("%d",&num);
-		printf("Los presoso han sacado un %d\n",numDados);
-		if (num==numDados) {
+		printf("Los preso han sacado un %d\n",numDados);
+		if (num==numDados || num>7) {
 			printf("Lo sentimos su respuesta es incorrecta\n");
 			vidas--;
 			printf("Te quedan %d vidas\n",vidas);
@@ -820,6 +815,7 @@ int NivelDificil(){
 	printf("Responde a la siguiente pregunta para encontrar el decodificador\n");
 	printf("Cual es el apellido del actor protagonista de tres entregas de Batman\n\n");
 	int encontradoBatman=0;
+	fflush(stdin);
 	while(!(encontradoBatman==1 &&	vidas>0)){
 		gets(batman);
 		if(strcmp(batman,"Bale")==0 || strcmp(batman,"bale")==0 || strcmp(batman,"BALE")==0){
@@ -848,8 +844,8 @@ int NivelDificil(){
 	}
 	printf("\n");
 	printf("Introduce la palabra cifrada\n");
-
 	int encontradoMaquinista=0;
+	fflush(stdin);
 	while(!(encontradoMaquinista==1 &&	vidas>0)){
 		gets(maquinista);
 		if(strcmp(maquinista,"maquinista")==0 || strcmp(maquinista,"Maquinista")==0 || strcmp(maquinista,"MAQUINISTA")==0){
@@ -870,8 +866,8 @@ int NivelDificil(){
 	printf("Perfecto ya tienes la primera palabra del cruzigrama, continuemos con la segunda.\nSe enciende la pantalla y aparecen cinco datos sobre una pelicula. Descubrela y completa tu cruzigrama\n\n");
 	printf("1_Ha tenido un total de 9 entregas.\n2_La primera se estreno en 1979.\n3_El director de esta entrega fue Ridley Scott.\n_4_La ultima entrega fue en 2017.\n5_ Para la mayoria de escenas gore de la primera pelicula se utilizaron productos de casqueria dando una impresion mas realista pero incomoda para los actores.\n\n");
 	printf("Introduce la pelicula\n");
-
 	int encontradoAlien=0;
+	fflush(stdin);
 	while(!(encontradoAlien==1 &&	vidas>0)){
 		gets(palabra);
 		if(strcmp(palabra,"alien")==0 || strcmp(palabra,"Alien")==0 || strcmp(palabra,"ALIEN")==0){
@@ -965,7 +961,7 @@ int NivelDificil(){
 	printf("Bien ahora solo falta buscar un movil para probar a llamar a este numero\nResponde esta pregunta correctamente para obtenerlo\n");
 	printf("cual es la primera pelicula de disney\n");
 	int encontradoDisney=0;
-
+	fflush(stdin);
 	while(!(encontradoDisney==1 &&	vidas>0)){
 		gets(blancanieves);
 		if(strcmp(blancanieves,"Blancanieves")==0 || strcmp(blancanieves,"blancanieves")==0 || strcmp(blancanieves,"BLANCANIEVES")==0){
@@ -1041,6 +1037,7 @@ int NivelDificil(){
 	printf("\n");
 	printf("Ahora ordena estas letras para formar el nombre de una pelicula\n");
 	int encontradoMatrix=0;
+	fflush(stdin);
 	while(!(encontradoMatrix==1 &&	vidas>0)){
 		gets(matrix);
 		if(strcmp(matrix,"matrix")==0 || strcmp(matrix,"Matrix")==0 || strcmp(matrix,"MATRIX")==0){
@@ -1119,6 +1116,7 @@ int NivelDificil(){
 	printf("%c %c %c %c %c %c %cc%ca%cs%ca%cb%cl%ca%cn%cc%ca%c\n\n",124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124,124);
 	printf("Introduce la palabra escondida\n");
 	int encontradoTesis=0;
+	fflush(stdin);
 	while(!(encontradoTesis==1 &&	vidas>0)){
 		gets(tesis);
 		if(strcmp(tesis,"tesis")==0 || strcmp(tesis,"Tesis")==0 || strcmp(tesis,"TESIS")==0){
