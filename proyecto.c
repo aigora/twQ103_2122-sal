@@ -3,8 +3,8 @@
 #define TAM_player 4
 #define TAM_Registrado 100
 struct TJugador{
-char nombre[50],clave_guardado[50],correo_guardado[50];
-int modo_de_juego,vidas;
+char nombre[50],clave_guardado[50],correo_guardado[50],nombre_grupo[50];
+int modo_de_juego;
 
 };
 void banner1(){
@@ -267,10 +267,13 @@ int main(){
             				scanf("%d",&num_player);
             			} while(num_player>TAM_player);
             			for(i=0;i<num_player;i++) {
-                			printf("Introduzca el nombre del grupo\n");
+                			printf("Introduzca el nombre del jugador\n");
                 			fflush(stdin);
-                			gets(jugadores[i].nombre);
+                			gets(jugadores[i].nombre_grupo);
             			}
+						printf("Introduzca el nombre del grupo\n");
+						fflush(stdin);
+						gets(jugadores[i].nombre);
         				}
             			do{
             				nivel=introducirDificultad();
@@ -280,25 +283,22 @@ int main(){
                 					banner2();
                 					printf("\n\n");
                                     nivelFacil();
-                                    printf("Felicidades has conseguido salir del laberinto\n\n");
                 				break;
                 				case 'M':
                 				case 'm':
                 					banner4();
                 					printf("\n\n");
 									NivelMedio();
-									printf("Felicidades has conseguido salir de la prision\n\n");
 								break;
 								case 'D':
 								case 'd':
 									banner3();
                 					printf("\n\n");
                                     NivelDificil();
-                                    printf("Felicidades has conseguido salir del cine abandonado\n\n");
 								break;
 
             				}
-                			printf("Quieres volver a jugar?\n Si desea volver a jugar introduzca la letra 's'");
+                			printf("Quieres volver a jugar?\n Si desea volver a jugar introduzca la letra 's'\n");
                 			fflush(stdin);
                 			scanf("%c",&respuesta_r);
             			}while(respuesta_r =='S'||respuesta_r =='s');
@@ -639,8 +639,7 @@ int nivelFacil () {
         	printf("GAME OVER\n\n");
         }
         else {
-            printf("Felicidades lograste salir\n");
-        }
+			printf("Felicidades has conseguido salir del laberinto\n\n");        }
 }
 int NivelMedio(){
 	srand(time(NULL));
@@ -798,6 +797,7 @@ int NivelMedio(){
 			}
 		}
 	}
+	printf("Felicidades has conseguido salir de la prision\n\n");
 	return 1;
 }
 int NivelDificil(){
@@ -1133,5 +1133,6 @@ int NivelDificil(){
 		}
 	}
 	printf("Ya esta abierto el criptex\n");
+	printf("Felicidades has conseguido salir del cine abandonado\n\n");
 	return 1;
 }
